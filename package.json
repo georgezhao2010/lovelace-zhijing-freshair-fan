@@ -1,0 +1,29 @@
+{
+  "name": "zhijing-freshair-fan",
+  "version": "v0.6.3",
+  "description": "Lovelace UI for zhijing_freshair component",
+  "keywords": [
+    "home-assistant",
+    "homeassistant",
+    "hass",
+    "automation",
+    "lovelace",
+    "custom-cards"
+  ],
+  "main": "src/zhijing-freshair-fan.js",
+  "module": "src/zhijing-freshair-fan.js",
+  "repository": "git@github.com:georgezhao2010/lovelace-zhijing-freshair-fan.git",
+  "author": "George Zhao",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "build": "npm run lint && npm run rollup && npm run babel",
+    "rollup": "rollup -c",
+    "babel": "babel dist/mini-graph-card-bundle.js --out-file dist/zhijing-freshair-fan.js",
+    "lint": "eslint src/* --ext .js",
+    "watch": "rollup -c --watch"
+  }
+}
