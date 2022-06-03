@@ -65,21 +65,21 @@ class ZhijJingFreshAirFan extends LitElement {
               <div class = "zhijing_freshair__mode flex">
                 <div class="mode_button 
                   ${fan.state=='off'?'button_inactive':
-                   (fan.attributes.mode=='auto'?'mode_checked':'')}">
+                   (fan.attributes.preset_mode=='auto'?'mode_checked':'')}">
                   <ha-icon-button icon="mdi:alpha-a-circle-outline" title="Power" 
                     @click=${()=>this._setMode(fan,"auto")}>
                   </ha-icon-button>
                 </div>
                 <div class="mode_button 
                   ${fan.state=='off'?'button_inactive':
-                   (fan.attributes.mode=='manually'?'mode_checked':'')}">
+                   (fan.attributes.preset_mode=='manually'?'mode_checked':'')}">
                   <ha-icon-button icon="mdi:alpha-m-circle-outline" title="Power" 
                     @click=${()=>this._setMode(fan, "manually")}>
                   </ha-icon-button>
                 </div>
                 <div class="mode_button
                   ${fan.state=='off'?'button_inactive':
-                   (fan.attributes.mode=='timing'?'mode_checked':'')}">
+                   (fan.attributes.preset_mode=='timing'?'mode_checked':'')}">
                   <ha-icon-button icon="mdi:alpha-t-circle-outline" title="Power" 
                     @click=${()=>this._setMode(fan, "timing")}>
                   </ha-icon-button>
@@ -178,7 +178,7 @@ class ZhijJingFreshAirFan extends LitElement {
 
   _setMode(fan, mode){
     if(fan.state != "on") return;
-    this.hass.callService("zhijing_freshair", "set_mode", {
+    this.hass.callService("zhijing_freshair", "set_preset_mode", {
       entity_id: fan.entity_id,
       mode: mode
     });
