@@ -55,47 +55,47 @@ class ZhijJingFreshAirFan extends LitElement {
                   ${this._showSpeed(fan)}
                 </div>
                 <div class="zhijing_freshair__powerstrip ${fan.state=='on'?'power_on':''}">
-                  <ha-icon-button icon="hass:power" title="Power" 
+                  <ha-icon-button title="Power"
                     @click=${()=>this._toggle(fan)}>
+                    <ha-icon icon="hass:power"></ha-icon>
                   </ha-icon-button>
                 </div>
               </div>
             </div>
             <div class='flex'>
               <div class = "zhijing_freshair__mode flex">
-                <div class="mode_button 
-                  ${fan.state=='off'?'button_inactive':
-                   (fan.attributes.preset_mode=='auto'?'mode_checked':'')}">
-                  <ha-icon-button icon="mdi:alpha-a-circle-outline" title="Mode Auto"
+                <div class="mode_button">
+                  <ha-icon-button title="Mode Auto"
                     @click=${()=>this._setMode(fan,"auto")}>
+                    <ha-icon icon="mdi:alpha-a-circle-outline" class="${fan.state=='off'?'button_inactive':
+                   (fan.attributes.preset_mode=='auto'?'mode_checked':'')}"></ha-icon>
                   </ha-icon-button>
                 </div>
-                <div class="mode_button 
-                  ${fan.state=='off'?'button_inactive':
-                   (fan.attributes.preset_mode=='manually'?'mode_checked':'')}">
+                <div class="mode_button">
                   <ha-icon-button title="Mode Manually"
                     @click=${()=>this._setMode(fan, "manually")}>
-                    <ha-icon icon="mdi:alpha-m-circle-outline"></ha-icon>
+                    <ha-icon icon="mdi:alpha-m-circle-outline" class="${fan.state=='off'?'button_inactive':
+                   (fan.attributes.preset_mode=='manually'?'mode_checked':'')}"></ha-icon>
                   </ha-icon-button>
                 </div>
-                <div class="mode_button
-                  ${fan.state=='off'?'button_inactive':
-                   (fan.attributes.preset_mode=='timing'?'mode_checked':'')}">
-                  <ha-icon-button icon="mdi:alpha-t-circle-outline" title="Mode Timing"
+                <div class="mode_button">
+                  <ha-icon-button title="Mode Timing"
                     @click=${()=>this._setMode(fan, "timing")}>
+                    <ha-icon icon="mdi:alpha-t-circle-outline" class="${fan.state=='off'?'button_inactive':
+                   (fan.attributes.preset_mode=='timing'?'mode_checked':'')}"></ha-icon>
                   </ha-icon-button>
                 </div>
                 <div class="speed__button__container">
-                   <div class="speed_button
-                      ${fan.state=='off' || fan.attributes.speed=='off'?'button_inactive':''}">
+                   <div class="speed_button">
                     <ha-icon-button icon="mdi:minus-circle-outline" title="Speed Decrease"
-                      @click=${()=>this._speedMinus(fan)}>
+                      @click=${()=>this._speedDecrease(fan)}>
+                      <ha-icon class="${fan.state=='off' || fan.attributes.percentage==0?'button_inactive':''}"> </ha-icon>
                     </ha-icon-button>
                   </div>
-                  <div class="speed_button
-                    ${fan.state=='off' || fan.attributes.speed=='high'?'button_inactive':''}">
+                  <div class="speed_button">
                     <ha-icon-button icon="mdi:plus-circle-outline" title="Speed Increase"
-                      @click=${()=>this._speedPlus(fan)}>
+                      @click=${()=>this._speedIncrease(fan)}>
+                      <ha-icon class="${fan.state=='off' || fan.attributes.percentage>=99?'button_inactive':''}"> </ha-icon>
                     </ha-icon-button>
                   </div>
                 </div>
@@ -151,14 +151,15 @@ class ZhijJingFreshAirFan extends LitElement {
     return result;
   }
 
-  _speedMinus(fan){
+  _speedDecrease(fan){
+    let numberspeed = this._getNumberSpeed(fan.attributes.percentage);
     if(numberspeed == 0)return;
     numberspeed -= 33;
     this._setSpeed(fan, numberspeed);
   }
 
-  _speedPlus(fan){
-    let numberspeed = this._getNumberSpeed(fan.attributes.speed);
+  _speedIncrease(fan){
+    let numberspeed = this._getNumberSpeed(fan.attributes.percentage);
     if(numberspeed >= 99)return;
     numberspeed += 33;
     if(numberspeed == 99){
@@ -474,10 +475,10 @@ class ZhijJingFreshAirFan extends LitElement {
       }
       
       .mode_checked{
-        color: var(--switch-checked-color);
+        color: var(--zhijing_freshair-accent-color);
       }
       .power_on{
-        color: var(--mmp-accent-color, var(--accent-color))  !important
+        color: var(--zhijing_freshair-accent-color)  !important
       }
       .button_inactive{
         color: var(--disabled-text-color);
