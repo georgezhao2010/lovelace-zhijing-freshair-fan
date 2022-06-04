@@ -240,29 +240,26 @@ class ZhijJingFreshAirFan extends LitElement {
       :host {
         overflow: visible !important;
         display: block;
-        --zhijing_freshair-scale: var(--mini-media-player-scale, 1);
+        --zhijing_freshair-scale: 1;
         --zhijing_freshair-unit: calc(var(--zhijing_freshair-scale) * 40px);
-        --zhijing_freshair-name-font-weight: var(--mini-media-player-name-font-weight, 400);
-        --zhijing_freshair-accent-color: var(--mini-media-player-accent-color, var(--accent-color, #f39c12));
-        --zhijing_freshair-base-color: var(--mini-media-player-base-color, var(--primary-text-color, #000));
-        --zhijing_freshair-overlay-color: var(--mini-media-player-overlay-color, rgba(0,0,0,0.5));
-        --zhijing_freshair-overlay-color-stop: var(--mini-media-player-overlay-color-stop, 25%);
-        --zhijing_freshair-overlay-base-color: var(--mini-media-player-overlay-base-color, #fff);
-        --zhijing_freshair-overlay-accent-color: var(--mini-media-player-overlay-accent-color, --zhijing_freshair-accent-color);
-        --zhijing_freshair-text-color: var(--mini-media-player-base-color, var(--primary-text-color, #000));
-        --zhijing_freshair-media-cover-info-color: var(--mini-media-player-media-cover-info-color, --zhijing_freshair-text-color);
+        --zhijing_freshair-name-font-weight: 400;
+        --zhijing_freshair-accent-color: var(--accent-color, #f39c12);
+        --zhijing_freshair-base-color: var(--primary-text-color, #000);
+        --zhijing_freshair-overlay-color: rgba(0,0,0,0.5);
+        --zhijing_freshair-overlay-color-stop: 25%;
+        --zhijing_freshair-overlay-base-color: #fff;
+        --zhijing_freshair-overlay-accent-color: var(--zhijing_freshair-accent-color);
+        --zhijing_freshair-text-color: var(--primary-text-color, #000);
+        --zhijing_freshair-media-cover-info-color: var(--zhijing_freshair-text-color);
         --zhijing_freshair-text-color-inverted: var(--disabled-text-color);
         --zhijing_freshair-active-color: var(--zhijing_freshair-active-color);
-        --zhijing_freshair-button-color: var(--mini-media-player-button-color, rgba(255,255,255,0.25));
-        --zhijing_freshair-icon-color:
-          var(--mini-media-player-icon-color,
-            var(--mini-media-player-base-color,
-              var(--paper-item-icon-color, #44739e)));
-        --zhijing_freshair-icon-active-color: var(--paper-item-icon-active-color, --zhijing_freshair-active-color);
+        --zhijing_freshair-button-color: rgba(255,255,255,0.25);
+        --zhijing_freshair-icon-color: var(--paper-item-icon-color, #44739e);
+        --zhijing_freshair-icon-active-color: var(--zhijing_freshair-active-color);
         --zhijing_freshair-info-opacity: 0.75;
-        --zhijing_freshair-bg-opacity: var(--mini-media-player-background-opacity, 1);
-        --zhijing_freshair-artwork-opacity: var(--mini-media-player-artwork-opacity, 1);
-        --zhijing_freshair-progress-height: var(--mini-media-player-progress-height, 6px);
+        --zhijing_freshair-bg-opacity: 1;
+        --zhijing_freshair-artwork-opacity: 1;
+        --zhijing_freshair-progress-height: 6px;
         --mdc-theme-primary: var(--zhijing_freshair-text-color);
         --mdc-theme-on-primary: var(--zhijing_freshair-text-color);
         --paper-checkbox-unchecked-color: var(--zhijing_freshair-text-color);
@@ -282,7 +279,28 @@ class ZhijJingFreshAirFan extends LitElement {
         --mdc-icon-button-size: calc(var(--zhijing_freshair-unit));
         --mdc-icon-size: calc(var(--zhijing_freshair-unit) * 0.6);
       }
-      
+      ha-icon {
+        width: calc(var(--zhijing_freshair-unit) * 0.6);
+        height: calc(var(--zhijing_freshair-unit) * 0.6);
+      }
+      ha-icon-button {
+        width: var(--zhijing_freshair-unit);
+        height: var(--zhijing_freshair-unit);
+        color: var(--zhijing_freshair-text-color, var(--primary-text-color));
+        transition: color 0.25s;
+      }
+      ha-icon-button[color] {
+        color: var(--zhijing_freshair-accent-color, var(--accent-color)) !important;
+        opacity: 1 !important;
+      }
+      ha-icon-button[inactive] {
+        opacity: 0.5;
+      }
+      ha-icon-button ha-icon{
+        display: flex;
+      }
+
+
       .zhijing_freshair {
         align-self: flex-end;
         box-sizing: border-box;
