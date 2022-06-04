@@ -178,7 +178,7 @@ class ZhijJingFreshAirFan extends LitElement {
 
   _setMode(fan, mode){
     if(fan.state != "on") return;
-    this.hass.callService("zhijing_freshair", "set_preset_mode", {
+    this.hass.callService("fan", "set_preset_mode", {
       entity_id: fan.entity_id,
       mode: mode
     });
