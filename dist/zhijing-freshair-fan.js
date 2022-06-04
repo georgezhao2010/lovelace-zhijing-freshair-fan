@@ -142,6 +142,9 @@ class ZhijJingFreshAirFan extends LitElement {
   _speedDecrease(fan){
     let numberspeed = fan.attributes.percentage;
     if(numberspeed == 0)return;
+    if(numberspeed == 100){
+        numberspeed = 99
+    }
     numberspeed -= 33;
     this._setSpeed(fan, numberspeed);
   }
