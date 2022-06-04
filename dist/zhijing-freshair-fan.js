@@ -73,8 +73,9 @@ class ZhijJingFreshAirFan extends LitElement {
                 <div class="mode_button 
                   ${fan.state=='off'?'button_inactive':
                    (fan.attributes.preset_mode=='manually'?'mode_checked':'')}">
-                  <ha-icon-button icon="mdi:alpha-m-circle-outline" title="Mode Manually"
+                  <ha-icon-button title="Mode Manually"
                     @click=${()=>this._setMode(fan, "manually")}>
+                    <ha-icon icon="mdi:alpha-m-circle-outline"></ha-icon>
                   </ha-icon-button>
                 </div>
                 <div class="mode_button
@@ -190,7 +191,7 @@ class ZhijJingFreshAirFan extends LitElement {
     if(fan.state != "on") return;
     this.hass.callService("fan", "set_percentage", {
       entity_id: fan.entity_id,
-      percentage: result
+      percentage: speed
     });
   }
 
